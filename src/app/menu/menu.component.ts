@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Dish} from '../shared/dish';
 import { from } from 'rxjs';
 import { DishService } from '../services/dish.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -12,19 +12,19 @@ import { DishService } from '../services/dish.service';
 export class MenuComponent implements OnInit {
 
 dishes:Dish[];
-selectedDish : Dish;
 
 
   constructor(
-    private dishService : DishService 
+    private dishService : DishService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
     this.dishes=this.dishService.getDishes();
   }
 
-onSelect(dish){
-  this.selectedDish=dish;
-}
+/* onSelect(dish){
+  this.router.navigate([`dishdetail/:${dish.id}`]);
+} */
 
 }
