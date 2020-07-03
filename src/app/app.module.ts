@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { PromotionService } from './services/promotion.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule
   
   ],
-  providers: [DishService],
+  providers: [DishService,PromotionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
