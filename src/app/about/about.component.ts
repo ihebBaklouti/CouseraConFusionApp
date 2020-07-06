@@ -18,7 +18,8 @@ leaders : Leader [];
   ) { }
 
   ngOnInit(): void {
-    this.leaders=this.leaderService.getleaders();
+    this.leaderService.getleaders()
+    .then(leaders => (this.leaders=leaders));
     console.log('leaders is', this.leaders);
     
   }

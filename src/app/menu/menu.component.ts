@@ -20,7 +20,8 @@ dishes:Dish[];
   ) { }
 
   ngOnInit(): void {
-    this.dishes=this.dishService.getDishes();
+    this.dishService.getDishes()
+    .then(dishes => (this.dishes=dishes));
   }
 
 /* onSelect(dish){

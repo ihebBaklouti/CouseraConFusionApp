@@ -27,7 +27,8 @@ dish:Dish;
   ngOnInit(): void {
   const id=this.activateRoute.snapshot.paramMap.get('id');
   console.log('my id is',id);
-  this.dish=this.dishService.getDish(id);
+  this.dishService.getDish(id)
+  .then(dish => (this.dish=dish));
   console.log('my dish is',this.dish);
   
   }
