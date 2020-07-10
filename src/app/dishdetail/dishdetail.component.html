@@ -37,16 +37,49 @@
     </div>
 
     <div fxFlex="40" *ngIf="dish">
-        <mat-list>
-            <h3>Comments</h3>
-            <mat-list-item *ngFor='let comment of dish.comments'>
-                <h4 matLine>{{comment.comment}}</h4>
-                <p matLine>{{comment.rating}} Stars</p>
-                <p matLine>
-                    <span>-- {{comment.author}} {{comment.date | date}}</span>
+        <div>
+            <mat-list>
+                <h3>Comments</h3>
+                <mat-list-item *ngFor='let comment of dish.comments'>
+                    <h4 matLine>{{comment.comment}}</h4>
+                    <p matLine>{{comment.rating}} Stars</p>
+                    <p matLine>
+                        <span>-- {{comment.author}} {{comment.date | date}}</span>
+                    </p>
+                </mat-list-item>
+
+                <mat-list-item *ngIf="feedbackForm.valid">
+                    <h4 matLine>{{ feedbackForm.value.comment}}</h4>
+                    <p matLine>
+                        {{value}} Stars
+                    </p>
+                    <p matLine>
+                        <span>--{{ feedbackForm.value.name}}</span>
+                    </p>
+                </mat-list-item>
+            </mat-list>
+
+        </div>
+
+        <div>
+            <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+                <p>
+                    <mat-form-field class="full-width">
+                        <input matInput formControlName="name" placeholder="Name" type="text" required>
+                        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+                    </mat-form-field>
                 </p>
-            </mat-list-item>
-        </mat-list>
+                <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(value)]="value" [vertical]="vertical">
+                </mat-slider>
+                <p>
+                    <mat-form-field class="full-width">
+                        <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+                    </mat-form-field>
+                </p>
+                <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid" (click)='addFeedback()'>Submit</button>
+            </form>
+        </div>
+
     </div>
 
 </div>
