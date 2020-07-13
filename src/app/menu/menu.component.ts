@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
 dishes:Dish[];
+errMess: string;
 
 
   constructor(
@@ -22,7 +23,8 @@ dishes:Dish[];
 
   ngOnInit(): void {
     this.dishService.getDishes()
-    .subscribe(dishes => (this.dishes=dishes));
+    .subscribe(dishes => this.dishes=dishes,
+      errmess => this.errMess = <any>errmess);
   }
 
 /* onSelect(dish){

@@ -40,6 +40,7 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import { SliderComponent } from './slider/slider.component';
+import {ProcessHTTPMsgService}from './services/process-httpmsg.service';
 
 
 @NgModule({
@@ -80,7 +81,7 @@ import { SliderComponent } from './slider/slider.component';
   entryComponents: [
     LoginComponent
 ],
-  providers: [DishService,PromotionService,LeaderService,{provide: 'baseURL', useValue: baseURL}],
+  providers: [DishService,PromotionService,LeaderService,ProcessHTTPMsgService,{provide: 'baseURL', useValue: baseURL}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

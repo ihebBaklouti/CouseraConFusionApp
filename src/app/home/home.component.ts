@@ -17,6 +17,8 @@ dish: Dish;
 promotion: Promotion;
 leader: Leader;
 
+dishERRMess: string;
+
   constructor(
     private dishservice: DishService,
     private promotionservice: PromotionService,
@@ -26,7 +28,8 @@ leader: Leader;
 
   ngOnInit(): void {
     this.dishservice.getFeaturedDish()
-    .subscribe(dish => (this.dish = dish));
+    .subscribe(dish => (this.dish = dish),
+    errmess => this.dishERRMess = <any>errmess);
      this.promotionservice.getFeaturedPromotion()
      .subscribe(promotion => (this.promotion =promotion));
     this.leaderservice.getFeaturedLeader()
