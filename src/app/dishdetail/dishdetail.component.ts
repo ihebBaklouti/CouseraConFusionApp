@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
 import {Comment} from '../shared/comment';
 import { DishService } from '../services/dish.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -47,7 +46,7 @@ export class DishdetailComponent implements OnInit {
 
 comment:Comment;
 dish:Dish;
-DISHES:Dish[];
+
 
 
 dishIds: string[];
@@ -68,7 +67,8 @@ contactType = ContactType;
     private route : Router,
     private dishService : DishService,
     private location : Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject('baseURL') private baseURL
   ) {  this.createForm();}
 
   ngOnInit(): void {

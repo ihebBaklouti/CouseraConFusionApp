@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Dish} from '../shared/dish';
 import { from } from 'rxjs';
 import { DishService } from '../services/dish.service';
@@ -16,7 +16,8 @@ dishes:Dish[];
 
   constructor(
     private dishService : DishService,
-    private router : Router
+    private router : Router,
+    @Inject('baseURL') private baseURL
   ) { }
 
   ngOnInit(): void {

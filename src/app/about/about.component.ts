@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { LEADERS } from '../shared/leaders';
 import { LeaderService } from '../services/leader.service';
@@ -14,7 +14,8 @@ leader : Leader;
 leaders : Leader [];
 
   constructor(
-    private leaderService : LeaderService
+    private leaderService : LeaderService,
+    @Inject('baseURL') private baseURL
   ) { }
 
   ngOnInit(): void {
