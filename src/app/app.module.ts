@@ -37,10 +37,12 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PromotionService } from './services/promotion.service';
+import { FeedBackService } from './services/feed-back.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import { SliderComponent } from './slider/slider.component';
 import {ProcessHTTPMsgService}from './services/process-httpmsg.service';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import {ProcessHTTPMsgService}from './services/process-httpmsg.service';
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    SliderComponent
+    SliderComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import {ProcessHTTPMsgService}from './services/process-httpmsg.service';
   entryComponents: [
     LoginComponent
 ],
-  providers: [DishService,PromotionService,LeaderService,ProcessHTTPMsgService,{provide: 'baseURL', useValue: baseURL}],
+  providers: [DishService,PromotionService,LeaderService,FeedBackService,ProcessHTTPMsgService,{provide: 'baseURL', useValue: baseURL}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
