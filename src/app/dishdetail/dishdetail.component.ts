@@ -58,6 +58,8 @@ errMess: string;
 feedbackForm: FormGroup;
 feedback: Feedback;
 contactType = ContactType;
+
+dishcopy: Dish;
   
 @ViewChild('fform') feedbackFormDirective;
 
@@ -74,7 +76,7 @@ contactType = ContactType;
   ngOnInit(): void {
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.activateRoute.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+    .subscribe(dish => { this.dish = dish; this.dishcopy = dish;  this.setPrevNext(dish.id); },
     errmess => this.errMess = <any>errmess);
   }
 
@@ -139,16 +141,21 @@ contactType = ContactType;
   }
 
   addFeedback(){
-    var d = new Date();
-    var n = d.toISOString();
+    var date = new Date().toISOString();
     var comment = {
       rating: this.value, 
       comment: this.feedbackForm.value.comment,
       author: this.feedbackForm.value.name,
-      date: n,
+      date: date,
   }
   let comments=this.dish.comments;
-  comments.push(comment);
+  this.dishcopy.comments.push(comment);
+  /* this.dishcopy.comments.push(this.comment); */
+    this.dishService.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
 
 
   }

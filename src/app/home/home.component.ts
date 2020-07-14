@@ -17,7 +17,9 @@ dish: Dish;
 promotion: Promotion;
 leader: Leader;
 
-dishERRMess: string;
+dishERRMess: string;              
+promotionERRMess: string;              
+leaderERRMess: string;              
 
   constructor(
     private dishservice: DishService,
@@ -31,9 +33,11 @@ dishERRMess: string;
     .subscribe(dish => (this.dish = dish),
     errmess => this.dishERRMess = <any>errmess);
      this.promotionservice.getFeaturedPromotion()
-     .subscribe(promotion => (this.promotion =promotion));
+     .subscribe(promotion => (this.promotion =promotion),
+     errmess => this.promotionERRMess = <any>errmess);
     this.leaderservice.getFeaturedLeader()
-    .subscribe(leader => (this.leader=leader));
+    .subscribe(leader => (this.leader=leader),
+    errmess => this.leaderERRMess = <any>errmess);
   }
 
 }

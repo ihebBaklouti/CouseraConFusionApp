@@ -12,6 +12,8 @@ export class AboutComponent implements OnInit {
 
 leader : Leader;  
 leaders : Leader [];
+errMess: string;
+
 
   constructor(
     private leaderService : LeaderService,
@@ -20,8 +22,8 @@ leaders : Leader [];
 
   ngOnInit(): void {
     this.leaderService.getleaders()
-    .subscribe(leaders => (this.leaders=leaders));
-    console.log('leaders is', this.leaders);
+    .subscribe(leaders => (this.leaders=leaders),
+    errmess => this.errMess = <any>errmess);
     
   }
 
