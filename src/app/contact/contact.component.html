@@ -38,6 +38,15 @@
         <h3>Send us your Feedback</h3>
         <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
+        <div [hidden]="feedbackForm || errMess">
+            <mat-spinner></mat-spinner>
+            <h4>Loading . . . Please Wait</h4>
+        </div>
+        <div fxFlex *ngIf="errMess">
+            <h2>Error</h2>
+            <h4>{{errMess}}</h4>
+        </div>
+
         <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
             <p>
 
@@ -80,5 +89,6 @@
             <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
         </form>
     </div>
+
 
 </div>

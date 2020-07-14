@@ -112,7 +112,7 @@ errMess : string;
     .subscribe(feedback => {
       this.feedback = feedback;
     },
-    errmess => { this.feedback = null; this.errMess = <any>errmess; });
+    errmess => {this.errMess = <any>errmess;});
   }
 
   

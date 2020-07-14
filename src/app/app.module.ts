@@ -24,6 +24,7 @@ import { baseURL } from './shared/baseurl';
 
 
 
+
 import { AppComponent } from './app.component';
 
 import 'hammerjs';
@@ -79,7 +80,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [
     LoginComponent
