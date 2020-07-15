@@ -2,11 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { FeedBackService } from '../services/feed-back.service';
+import { visibility,expand } from '../animations/app.animations';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+  animations: [
+    visibility(),
+    expand()
+  ]
 })
 export class ContactComponent implements OnInit {
 
@@ -43,6 +52,7 @@ feedback: Feedback;
 contactType = ContactType;
 
 errMess : string;
+submitting:boolean;
 
 @ViewChild('fform') feedbackFormDirective;
 
@@ -96,6 +106,7 @@ errMess : string;
 
 
   onSubmit() {
+    this.submitting = true;
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
     this.feedbackForm.reset({
@@ -109,10 +120,11 @@ errMess : string;
     });
     this.feedbackFormDirective.resetForm();
     this.feedBackService.postFeedback(this.feedback)
-    .subscribe(feedback => {
-      this.feedback = feedback;
+    .subscribe(feedback => { this.feedback = feedback ; 
+    setTimeout(() => (this.submitting = false), 2000);
     },
-    errmess => {this.errMess = <any>errmess;});
+    errmess => {this.errMess = <any>errmess;this.submitting = false; this.feedback = null;
+    });
   }
 
   

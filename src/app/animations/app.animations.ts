@@ -14,6 +14,22 @@ export function visibility() {
     ]);
 }
 
+export function visibilityy() {
+    return trigger('visibilityy', [
+        state('shown', style({
+            transform: 'scale(1.0)',
+            opacity: 1
+        })),
+        state('hidden', style({
+            transform: 'scale(0.5)',
+            opacity: 0
+        })),
+      /*   transition('open => closed', [
+            animate('5s')
+          ]), */
+    ]);
+}
+
 
 export function flyInOut() {
     return trigger('flyInOut', [
